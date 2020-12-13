@@ -6,11 +6,13 @@ import { StyleguideRoutingModule } from './styleguide-routing.module';
 import { StyleguidePage } from './styleguide.page';
 import { TypohraphyPage } from './typography/typography.page';
 import { ColorPage } from './color/color.page';
+import { ButtonPage } from './button/button.page';
 
 const PAGES = [
     StyleguidePage,
     TypohraphyPage,
     ColorPage,
+    ButtonPage,
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ButtonPage } from './button/button.page';
 import { ColorPage } from './color/color.page';
 import { StyleguidePage } from './styleguide.page';
 import { TypohraphyPage } from './typography/typography.page';
@@ -24,6 +25,11 @@ const routes: Routes = [
         path: 'color',
         component: ColorPage,
         data: { title: 'color' }
+      },
+      {
+        path: 'button',
+        component: ButtonPage,
+        data: { title: 'button' }
       },
     ]
   }

@@ -9,8 +9,12 @@ import { LoadingComponent } from './loading/loading.component';
 
 // Modules
 import { MaterialModule } from './material.module';
+import { ButtonComponent } from './button/button.component';
 
-const COMPONENTS = [LoadingComponent];
+const COMPONENTS = [
+    LoadingComponent,
+    ButtonComponent
+];
 
 const PROVIDERS = [];
 
