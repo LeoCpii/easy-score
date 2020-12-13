@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ButtonPage } from './button/button.page';
 import { ColorPage } from './color/color.page';
+import { FormPage } from './form/form.page';
 import { StyleguidePage } from './styleguide.page';
 import { TypohraphyPage } from './typography/typography.page';
 
@@ -30,6 +31,11 @@ const routes: Routes = [
         path: 'button',
         component: ButtonPage,
         data: { title: 'button' }
+      },
+      {
+        path: 'form',
+        component: FormPage,
+        data: { title: 'form' }
       },
     ]
   }

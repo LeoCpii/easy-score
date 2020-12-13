@@ -7,12 +7,14 @@ import { StyleguidePage } from './styleguide.page';
 import { TypohraphyPage } from './typography/typography.page';
 import { ColorPage } from './color/color.page';
 import { ButtonPage } from './button/button.page';
+import { FormPage } from './form/form.page';
 
 const PAGES = [
     StyleguidePage,
     TypohraphyPage,
     ColorPage,
     ButtonPage,
+    FormPage,
 ];
 
 @NgModule({
