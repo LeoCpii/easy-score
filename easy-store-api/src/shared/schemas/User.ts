@@ -19,6 +19,7 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: [true, 'Email é obrigatório'],
+        unique: true,
         validate: {
             validator: (value: string) => Validator.isValidEmail(value),
             message: (props: { value: string; }) => `${props.value} não é um email válido!`

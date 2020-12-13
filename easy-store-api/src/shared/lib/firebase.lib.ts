@@ -1,9 +1,10 @@
 import admin, { AppOptions } from "firebase-admin";
 import { Utils } from './utils.lib';
-
-interface IResponse { data: string };
+import { Storage } from '@google-cloud/storage';
 
 export class Firebase {
+    private app: admin.app.App;
+
     private static MESSAGE_ERROR = {
         'auth/wrong-password': {
             message: 'Email ou senha inválidos',
@@ -25,31 +26,43 @@ export class Firebase {
         databaseURL: process.env.DBURL,
         projectId: process.env.PID,
         storageBucket: process.env.BUCKET,
-        messagingSenderId: process.env.MSGID
+        messagingSenderId: process.env.MSGID,
+        measurementId: process.env.MEASUREMENT_ID
     }
 
     private get credentials(): AppOptions {
         return this.config;
     }
 
+    private get storage() {
+        return new Storage({ projectId: this.credentials.projectId, keyFilename: './firebase.json' });
+    }
+
+    private get bucket() {
+        return this.storage.bucket(this.credentials.storageBucket);
+    }
+
+    public get bucketName() {
+        return process.env.BUCKET;
+    }
+
     public init() {
         admin.initializeApp(this.credentials);
     }
 
-    public async user(email: string): Promise<IResponse> {
-        try {
-            const auth = await admin.auth().getUserByEmail(email);
-            return { data: auth.uid };
-        } catch (err) {
-            const data = this.error(err);
-            return { data: data.message }
-        }
+    public async upload(serverPath: string, path: string) {
+        await this.bucket.upload(serverPath, {
+            destination: path,
+            public: true,
+        }).catch(err => {
+            return this.error(err);
+        })
     }
 
-    private error(err: { code: string, message: string }): { message: string; status: number } {
+    private error(err: { code: string, message?: string; Error: string; }): { message: string; status: number } {
         const utils = new Utils();
         return Firebase.MESSAGE_ERROR[err.code] || {
-            message: utils.isNoProd ? err.message : 'Oops, algo deu errado, tente novamente mais tarde.',
+            message: utils.isNoProd ? (err.message || err[0].Error) : 'Oops, algo deu errado, tente novamente mais tarde.',
             status: 500
         };
     }
