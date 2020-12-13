@@ -1,8 +1,10 @@
 import { Schema, model, Document, Model } from 'mongoose';
 import Validator from './../services/validator.service';
+import { IApp, IAppDoc } from './App';
 export interface IUser {
     name: string;
     email: string;
+    apps: IAppDoc[];
     favorites: Array<{ name: string; slug: string }>
 };
 
@@ -25,11 +27,12 @@ const UserSchema = new Schema({
             message: (props: { value: string; }) => `${props.value} não é um email válido!`
         }
     },
-    apps: {
-        type: [Schema.Types.ObjectId],
+    apps: [{
+        type: Schema.Types.ObjectId,
         ref: 'App',
-        default: []
-    },
+        default: [],
+        unique: true,
+    }],
     favorites: {
         type: [{
             name: { type: String },
@@ -46,5 +49,15 @@ export default model<IUserDoc>('User', UserSchema);
 export class UserHelper {
     private get user(): Model<IUserDoc, {}> {
         return model<IUserDoc>('User', UserSchema);
+    }
+
+    public async associateAppToUser(id: string, options: Object) {
+        await this.user.updateOne(
+            { _id: id, },
+            { $addToSet: options, },
+            { upsert: true }
+        ).catch(e => {
+            throw { message: e, status: 422 };
+        });
     }
 }

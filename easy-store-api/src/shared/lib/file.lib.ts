@@ -1,14 +1,9 @@
 import { Firebase } from "./firebase.lib";
 import * as fs from 'fs';
-import * as path from 'path';
 
 export class File {
     private get storage() {
         return new Firebase();
-    }
-
-    private path(name: string) {
-        return path.join(name);
     }
 
     private ext(base: string): string {

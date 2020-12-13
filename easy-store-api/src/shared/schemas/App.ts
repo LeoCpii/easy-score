@@ -12,7 +12,7 @@ export interface IApp {
     }
 };
 
-interface IAppDoc extends IApp, Document { }
+export interface IAppDoc extends IApp, Document { }
 
 const CATEGORIES = Object.freeze({
     ['Música']: 0,
@@ -43,7 +43,7 @@ const AppSchema = new Schema({
         type: Number,
         required: [true, 'Categoria é obrigatória'],
         enum: [Object.values(CATEGORIES)],
-        message: props => `${props.value} não é um preço válida!`
+        message: props => `${props.value} não é uma propriedade válida!`
     },
     color: {
         type: {
