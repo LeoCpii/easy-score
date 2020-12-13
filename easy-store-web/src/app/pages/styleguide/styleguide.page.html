@@ -15,14 +15,12 @@
 
                 <ng-container *ngIf="searching">
                     <div class="container-loading">
-                        <!-- <app-loading class="loading" [size]="1.7"></app-loading> -->
+                        <app-loading class="loading" [size]="1.7"></app-loading>
                     </div>
                 </ng-container>
 
                 <ng-container *ngIf="!searching && noData">
-                    <!-- <app-text>
-                        Nenhuma página encontrada
-                    </app-text> -->
+                   <div class="empty-text">Nenhuma página encontrada</div>
                 </ng-container>
             </div>
         </div>

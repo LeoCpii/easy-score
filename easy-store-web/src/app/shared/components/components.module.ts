@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // Components
+import { LoadingComponent } from './loading/loading.component';
 
 // Services
 
 // Modules
 import { MaterialModule } from './material.module';
 
-const COMPONENTS = [];
+const COMPONENTS = [LoadingComponent];
 
 const PROVIDERS = [];
 
