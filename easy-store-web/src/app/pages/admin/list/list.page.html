@@ -1,0 +1,22 @@
+<div class="root" [@initial]="animate">
+    <input (input)="search($event)" class="input" type="text" placeholder="Buscar por nome...">
+
+
+    <ng-container *ngIf="loading">
+        <div class="list">
+            <div class="card" *ngFor="let item of arr">
+                <div class="loading-container">
+                    <app-skeleton-loading type="box"></app-skeleton-loading>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    
+    <ng-container *ngIf="!loading">
+        <div class="list" [@listAnimation]="cards.length">
+            <div class="card" *ngFor="let card of cards">
+                <app-card-app-fragment [data]="card"></app-card-app-fragment>
+            </div>
+        </div>
+    </ng-container>
+</div>

@@ -20,5 +20,9 @@ export const PAGES: IButtonPage[] = [
         label: 'Form',
         route: '/styleguide/form',
     },
+    {
+        label: 'Skeleton',
+        route: '/styleguide/skeleton',
+    },
 ];
 

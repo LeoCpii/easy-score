@@ -7,20 +7,26 @@ import { LoadingComponent } from './loading/loading.component';
 import { ButtonComponent } from './button/button.component';
 import { FormLogComponent } from './form-log/form-log.component';
 import { InputComponent } from './input/input.component';
+import { InputSelectComponent } from './input-select/input-select.component';
+import { AvatarComponent } from './avatar/avatar.component';
+import { LogoComponent } from './logo/logo.component';
+import { SkeletonLoadingComponent } from './skeleton-loading/skeleton-loading.component';
 
 // Services
 
 // Modules
 import { MaterialModule } from './material.module';
 import { NgxMaskModule } from 'ngx-mask';
-import { InputSelectComponent } from './input-select/input-select.component';
 
 const COMPONENTS = [
     LoadingComponent,
     ButtonComponent,
     FormLogComponent,
     InputComponent,
-    InputSelectComponent
+    InputSelectComponent,
+    AvatarComponent,
+    LogoComponent,
+    SkeletonLoadingComponent
 ];
 
 const PROVIDERS = [];

@@ -1,0 +1,31 @@
+<div class="root">
+    <header>
+        <div class="line"></div>
+        <div class="container-header">
+            <div class="content-header">
+                <div class="left">
+                    <div class="logo">
+                        <app-logo (click)="go('monitor')"></app-logo>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <span>{{ name }}</span>
+                    <app-avatar [matMenuTriggerFor]="menu" size="small" [user]="data.name">
+                    </app-avatar>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button (click)="logout()" mat-menu-item>
+                            <mat-icon>exit_to_app</mat-icon>
+                            <span>Sair</span>
+                        </button>
+                    </mat-menu>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content-container">
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
