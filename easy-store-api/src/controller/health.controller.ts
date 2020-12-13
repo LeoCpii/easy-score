@@ -1,8 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
+import { Database } from '../database';
+
 
 class HealthController {
     public async discovery(req: Request, res: Response, next: NextFunction): Promise<Response> {
-        return res.json({ message: 'The application is healthy' });
+        const database = new Database();
+
+        const data = {
+            database: database.isHealthConnetion()
+        }
+
+        return res.json(data);
     }
 }
 

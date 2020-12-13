@@ -1,12 +1,9 @@
 import { Schema, model, Document, Model } from 'mongoose';
 import Validator from './../services/validator.service';
-import { IWalletDoc } from './Wallet';
-
 export interface IUser {
     name: string;
     email: string;
-    wallet: IWalletDoc;
-    favorites: Array<{ name: string; id: string }>
+    favorites: Array<{ name: string; slug: string }>
 };
 
 interface IUserDoc extends IUser, Document { }
@@ -27,14 +24,15 @@ const UserSchema = new Schema({
             message: (props: { value: string; }) => `${props.value} não é um email válido!`
         }
     },
-    wallet: {
-        type: Schema.Types.ObjectId,
-        ref: 'Wallet',
+    apps: {
+        type: [Schema.Types.ObjectId],
+        ref: 'App',
+        default: []
     },
     favorites: {
         type: [{
             name: { type: String },
-            id: { type: String },
+            slug: { type: String },
         }],
         default: []
     }
@@ -47,15 +45,5 @@ export default model<IUserDoc>('User', UserSchema);
 export class UserHelper {
     private get user(): Model<IUserDoc, {}> {
         return model<IUserDoc>('User', UserSchema);
-    }
-
-    public async updateFavorite(id: string, favorites: { name: string; id: string }[]) {
-        await this.user.updateOne(
-            { _id: id, },
-            { $set: { favorites, }, },
-            { upsert: true }
-        ).catch(e => {
-            throw { message: e, status: 422 };
-        });
     }
 }
