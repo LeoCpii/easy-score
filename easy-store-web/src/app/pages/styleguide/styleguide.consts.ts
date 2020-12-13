@@ -8,5 +8,9 @@ export const PAGES: IButtonPage[] = [
         label: 'Typography',
         route: '/styleguide/typography',
     },
+    {
+        label: 'Color',
+        route: '/styleguide/color',
+    },
 ];
 
