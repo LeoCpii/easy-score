@@ -1,0 +1,20 @@
+<div class="root">
+    <div class="container">
+        <div class="item">
+            <h3 class="title">Skeleton</h3>
+
+            <div [@listAnimation]="skeletons.length">
+                <section *ngFor="let skeleton of skeletons">
+                    <div class="section">
+                        <h5 class="sub-title">{{ skeleton.name }}</h5>
+                        <div class="grid">
+                            <div class="loading-container">
+                                <app-skeleton-loading [type]="skeleton.type"></app-skeleton-loading>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

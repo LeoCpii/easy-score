@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ButtonPage } from './button/button.page';
 import { ColorPage } from './color/color.page';
 import { FormPage } from './form/form.page';
+import { SkeletonPage } from './skeleton/skeleton.page';
 import { StyleguidePage } from './styleguide.page';
 import { TypohraphyPage } from './typography/typography.page';
 
@@ -36,6 +37,11 @@ const routes: Routes = [
         path: 'form',
         component: FormPage,
         data: { title: 'form' }
+      },
+      {
+        path: 'skeleton',
+        component: SkeletonPage,
+        data: { title: 'skeleton' }
       },
     ]
   }

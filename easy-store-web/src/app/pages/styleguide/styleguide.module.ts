@@ -8,6 +8,7 @@ import { TypohraphyPage } from './typography/typography.page';
 import { ColorPage } from './color/color.page';
 import { ButtonPage } from './button/button.page';
 import { FormPage } from './form/form.page';
+import { SkeletonPage } from './skeleton/skeleton.page';
 
 const PAGES = [
     StyleguidePage,
@@ -15,6 +16,7 @@ const PAGES = [
     ColorPage,
     ButtonPage,
     FormPage,
+    SkeletonPage
 ];
 
 @NgModule({
