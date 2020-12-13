@@ -1,0 +1,57 @@
+/* COLORS */
+$primary: #00A868;
+$white: #fff;
+$off-white: #f9f9f9;
+$green: #28c18d;
+$red: #d23b3b;
+$yellow: #f9cc54;
+$blue: #457ff0;
+$blue--light: #EBF0F8;
+$grey: #666666;
+$grey--light: #E0E2E6;
+$grey--dark: #20252A;
+$color-link: #3171ef;
+$color-link-hover: #2d61c3;
+
+/* FONT FAMILY */
+$font-sans-serif: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$font-serif: "Freight", "Georgia", serif;
+$font-regular: "gibson" !important;
+$font-bold: "gibson-bold" !important;
+$font-semi-bold: "gibson-semi-bold" !important;
+$font-crypto-coin: "unica-one" !important;
+
+/* FONT WEIGHT */
+$weight-light: 300;
+$weight-regular: 400;
+$weight-medium: 600;
+$weight-bold: 700;
+
+/* GRID SYSTEM */
+$grid-columns: 12;
+
+/* TRANSITIONS */
+$duration-short: 0.2s;
+$duration-medium: 0.3s;
+$duration-long: 0.5s;
+$duration-longer: 0.8s;
+$duration-enter-leave: 1.6s;
+$bottom-transition: bottom $duration-long ease;
+$ease-default: cubic-bezier(0.25, 0.1, 0.25, 0.1);
+$ease-in-out: cubic-bezier(0.51, 0.31, 0, 1.01);
+
+/* BOX SHADOW */
+$box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+/* AVATAR */
+$tiny-avatar: 20px;
+$tiny-avatar-font: 0.6rem;
+
+$small-avatar: 40px;
+$small-avatar-font: 1rem;
+
+$medium-avatar: 50px;
+$medium-avatar-font: 1.3rem;
+
+$large-avatar: 60px;
+$large-avatar-font: 1.8rem;
