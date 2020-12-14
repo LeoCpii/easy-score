@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { ComponentsModule } from './components/components.module';
+import { ResizeDirective } from './directives/resize.directive';
 
 // lIB
 import { JWT } from './lib/jwt.lib';
 
 // Service
+import { SecurityService } from './services/security.service';
+import { UserService } from './services/user.service';
 
 // Guard
 
 // Directive
+import { LoggedGuard } from './guards/logged.guard';
 
 // Pipes
 
-const SERVICES = [];
+const SERVICES = [SecurityService, UserService];
 
 const LIBS = [JWT];
 
-const GUARDS = [];
+const GUARDS = [LoggedGuard];
 
-const DIRECTIVES = [];
+const DIRECTIVES = [ResizeDirective];
 
 const PIPES = [];
 

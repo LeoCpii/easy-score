@@ -1,0 +1,17 @@
+<div class="container-input-file">
+    <input (input)="onChange($event)" (blur)="onBlur($event.target.value)" type="file">
+    <div *ngIf="!loading && !data?.name" class="text">Solte uma imagem ou clique para adicionar um ícone</div>
+    <div *ngIf="data?.name">
+        <div class="info-container">
+            <div class="icon icon--success">
+                <mat-icon>done</mat-icon>
+            </div>
+            <div class="info">
+                <div class="name"> {{ data.name }} </div>
+                <div *ngIf="!loading" class="size"> {{ data.size }}</div>
+            </div>
+        </div>
+
+        <mat-progress-bar *ngIf="loading" mode="buffer" [value]="digit"></mat-progress-bar>
+    </div>
+</div>

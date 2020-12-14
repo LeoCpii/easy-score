@@ -1,0 +1,21 @@
+<div class="card">
+    <button (click)="updateFavorite()" class="button" mat-icon-button>
+        <mat-icon class="icon" [class.icon--active]="data.favorite">favorite</mat-icon>
+    </button>
+    <div class="content">
+        <div class="container-image">
+            <div class="content-image">
+                <img [src]="data.image" alt="">
+            </div>
+        </div>
+        <div class="info-container">
+            <h3 class="title">{{ data.name }}</h3>
+            <span class="category">{{ category }}</span>
+            <div class="colors">
+                <div class="color" [ngStyle]="{'background': data.color.primary}"></div>
+                <div class="color" [ngStyle]="{'background': data.color.secondary}"></div>
+            </div>
+        </div>
+        <app-button (click)="go()" label="Editar" [fullWidth]="true" theme="no-border"></app-button>
+    </div>
+</div>

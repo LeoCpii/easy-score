@@ -1,0 +1,17 @@
+<div class="container-field">
+    <div class="field" [class.field--invalid]="shouldDisplayError()">
+        <div class="field-float">
+            <select #input (input)="onChange($event.target.value)" (blur)="onBlur($event.target.value)">
+                <option [value]="label" disabled [selected]="!setter">{{ label }}</option>
+                <option [value]="item[keyValue]" *ngFor="let item of data" [selected]="set(item[keyValue])">{{ item[keyLabel] }}</option>
+            </select>
+        </div>
+        <button (click)="open()" class="button" type="button" mat-icon-button matSuffix>
+            <mat-icon class="color-icon">expand_more</mat-icon>
+        </button>
+    </div>
+
+    <div class="feedback-error" [class.feedback-error--active]="shouldDisplayError()">
+        {{ message() || messageError }}
+    </div>
+</div>

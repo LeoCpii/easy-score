@@ -1,0 +1,9 @@
+<div class="container-input" (clickOutside)="close()">
+    <input #input (input)="onChange($event.target.value)" (blur)="onBlur($event.target.value)" type="text"
+        [readonly]="true" [placeholder]="label">
+    <button type="button" class="button" (click)="open()" [ngStyle]="{'background': color}">{{ color }}</button>
+
+    <div *ngIf="show" class="container-color-picker" @animation>
+        <color-sketch [color]="color" (onChangeComplete)="changeComplete($event)"></color-sketch>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+@import "includes";
+
+.root {
+    min-height: calc(100vh - 32px);
+
+    .container {
+        .title {
+            @include page-title;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+            padding: 5px 0px;
+        }
+
+        .sub-title {
+            @include page-sub-title;
+        }
+
+        .grid {
+            @include grid(12, 30px);
+
+            .loading-container {
+                @include grid-column-span(4);
+                width: 100%;
+                height: 50px;
+            }
+        }
+    }
+}

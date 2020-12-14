@@ -1,0 +1,31 @@
+@import "includes";
+
+.root {
+    min-height: calc(100vh - 32px);
+
+    .item {
+        .title {
+            @include page-title;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+            padding: 5px 0px;
+        }
+
+        form {
+            @include grid(12, 30px);
+            margin-bottom: 2rem;
+
+            .input {
+                @include grid-column-span(4);
+            }
+
+            .input-file {
+                @include grid-column-span(12);
+            }
+
+            .button {
+                @include grid-column-span(12);
+                @include end;
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+<div class="root" [@initial]="animate">
+    <div class="button-add">
+        <app-button (clickEvent)="go()" label="Criar novo app" [fullWidth]="hasMobile"></app-button>
+    </div>
+    <input *ngIf="cards.length" (input)="search($event)" class="input" type="text" placeholder="Buscar por nome...">
+    <ng-container *ngIf="!loading && !cards.length">
+        <div class="empty-container" @animation>
+            <div class="content">
+                <div class="empty-container-icon">
+                    <app-svg svg="ghost" size="responsive"></app-svg>
+                </div>
+                <h2>Você ainda não possui nenhum app cadastrado</h2>
+                <app-button (clickEvent)="go()" label="Criar novo app"></app-button>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="loading">
+        <div class="list">
+            <div class="card" *ngFor="let item of arr">
+                <div class="loading-container">
+                    <app-skeleton-loading type="box"></app-skeleton-loading>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="!loading && cards.length">
+        <div class="list" [@listAnimation]="filtered.length">
+            <div class="card" *ngFor="let card of filtered">
+                <app-card-app-fragment [data]="card"></app-card-app-fragment>
+            </div>
+
+            <div class="card">
+                <div (click)="go()" class="card-create">
+                    <div class="content">
+                        <h3>CRIAR APP</h3>
+                        <button mat-mini-fab disabled >
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="cards.length && !loading && !filtered.length">
+        <div class="empty-container" @animation>
+            <div class="content">
+                <div class="empty-container-icon">
+                    <app-svg svg="ghost" size="responsive"></app-svg>
+                </div>
+                <h2>Nenhum app encontrado =/</h2>
+            </div>
+        </div>
+    </ng-container>
+</div>
