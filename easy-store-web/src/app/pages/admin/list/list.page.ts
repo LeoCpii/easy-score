@@ -75,7 +75,6 @@ export class ListPage implements OnInit {
     ngOnInit() {
         this.getCards();
         this.sub = this.window.change.subscribe((hasMobile: boolean) => {
-            console.log(hasMobile);
             this.hasMobile = hasMobile
         });
     }
