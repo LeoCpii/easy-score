@@ -37,7 +37,7 @@ export class File {
 
             const path = this.generatePath([email, app, name]);
 
-            this.storage.upload(name, path).then(() => this.exclude(name));
+            this.storage.upload(path, base64).then(() => this.exclude(name));
 
             return this.createPublicFileURL(path);
         } catch (error) {

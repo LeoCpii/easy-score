@@ -30,6 +30,7 @@
     "mongoose": "^5.10.17",
     "nodemon": "^2.0.2",
     "nyc": "^15.1.0",
+    "stream": "0.0.2",
     "sucrase": "^3.13.0"
   },
   "devDependencies": {
