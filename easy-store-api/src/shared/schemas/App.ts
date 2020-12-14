@@ -76,4 +76,24 @@ export class AppHelper {
             throw { message: e, status: 422 };
         });
     }
+
+    public async update(id: string, params: IApp) {
+        await this.app.updateOne(
+            { _id: id, },
+            {
+                $set: {
+                    name: params.name,
+                    image: params.image,
+                    category: params.category,
+                    color: {
+                        primary: params.color.primary,
+                        secondary: params.color.secondary
+                    },
+                },
+            },
+            { upsert: true }
+        ).catch(e => {
+            throw { message: e, status: 422 };
+        });
+    }
 }

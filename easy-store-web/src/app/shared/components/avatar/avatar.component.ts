@@ -19,14 +19,12 @@ export class AvatarComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit() {
-    }
-
-    nameInitials() {
+    public nameInitials(): string {
+        console.log('this.user', this.user);
         const names: string[] = this.user.trim().split(' ');
-        if (!this.user || this.img) {return ''; }
+        if (!this.user || this.img) { return ''; }
         const firstInitial = names[0].charAt(0);
-        let secondInitial;
+        let secondInitial: string;
         if (names.length > 1) {
             secondInitial = names[names.length - 1].charAt(0);
         } else {
@@ -34,4 +32,6 @@ export class AvatarComponent implements OnInit {
         }
         return firstInitial + secondInitial;
     }
+
+    ngOnInit() { }
 }

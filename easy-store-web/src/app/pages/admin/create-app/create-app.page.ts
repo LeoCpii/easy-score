@@ -62,11 +62,19 @@ export class CreateAppPage implements OnInit {
         return this.form.value.secondary || '#e9e9e9';
     }
 
+    public get messageSuccess() {
+        return this.data ? 'App editado com sucesso!' : 'App criado com sucesso!';
+    }
+
     public close(): void {
         this.router.navigate(['admin', 'list']);
     }
 
-    public create() {
+    public do(): void {
+        this.data ? this.update() : this.create();
+    }
+
+    private create() {
         this.isLoading = true;
         const params: IApp = {
             name: this.form.value.name,
@@ -79,14 +87,33 @@ export class CreateAppPage implements OnInit {
         };
 
         this.user.addApp(params)
-            .then(() => this.isFinish = true)
+            .then(() => setTimeout(() => this.isFinish = true, 500))
             .catch(() => this.alert.show('Erro ao criar categoria'))
+            .finally(() => setTimeout(() => this.isLoading = false, 500))
+    }
+
+    private update() {
+        this.isLoading = true;
+        const params: IApp = {
+            name: this.form.value.name,
+            slug: this.data.slug,
+            category: Number(this.form.value.category),
+            image: this.form.value.image,
+            color: {
+                primary: this.form.value.primary,
+                secondary: this.form.value.secondary,
+            }
+        };
+
+        this.user.updateApp(params)
+            .then(() => setTimeout(() => this.isFinish = true, 500))
+            .catch(() => this.alert.show('Erro ao editar categoria'))
             .finally(() => setTimeout(() => this.isLoading = false, 500))
     }
 
     private setForm() {
         this.form.patchValue({
-            name: this.data.name, 
+            name: this.data.name,
             image: this.data.image,
             primary: this.data.color.primary,
             secondary: this.data.color.secondary,

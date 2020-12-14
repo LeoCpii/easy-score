@@ -18,6 +18,7 @@ routes.get('/user', UserController.discovery);
 routes.get('/user/apps', UserController.apps);
 routes.get('/user/app', UserController.app);
 routes.post('/user/add-app', Auth.autorize, UserController.addApp);
+routes.put('/user/update-app', Auth.autorize, UserController.updateApp);
 routes.put('/user/update-favorite', Auth.autorize, UserController.addFavorite);
 
 

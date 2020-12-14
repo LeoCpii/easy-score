@@ -3,7 +3,7 @@
         <ng-container *ngIf="!isFinish">
             <div [@slide_XLR]="animate" class="form-container">
                 <div class="form">
-                    <form [formGroup]="form" (submit)="create()">
+                    <form [formGroup]="form" (submit)="do()">
                         <div class="input">
                             <app-input [control]="form.controls.name" formControlName="name"
                                 label="Digite o nome do aplicativo" [required]="true"></app-input>
@@ -59,7 +59,7 @@
 
         <ng-container *ngIf="isFinish">
             <div class="finish-container" @animation>
-                <h1>App criado com sucesso!</h1>
+                <h1>{{ messageSuccess }}</h1>
                 <div>
                     <app-button (click)="close()" label="Voltar"></app-button>
                 </div>

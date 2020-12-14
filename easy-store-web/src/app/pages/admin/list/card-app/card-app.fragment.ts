@@ -33,5 +33,7 @@ export class CardAppFragment implements OnInit {
         this.router.navigate(['admin', 'edit-app', this.data.slug]);
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        console.log(this.data);
+    }
 }

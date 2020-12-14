@@ -30,10 +30,21 @@
             <div class="card" *ngFor="let card of filtered">
                 <app-card-app-fragment [data]="card"></app-card-app-fragment>
             </div>
+
+            <div class="card">
+                <div (click)="go()" class="card-create">
+                    <div class="content">
+                        <h3>CRIAR APP</h3>
+                        <button mat-mini-fab disabled >
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </ng-container>
 
-    <ng-container *ngIf="!loading && !filtered.length">
+    <ng-container *ngIf="cards.length && !loading && !filtered.length">
         <div class="empty-container" @animation>
             <div class="content">
                 <div class="empty-container-icon">

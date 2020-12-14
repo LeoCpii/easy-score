@@ -15,7 +15,7 @@ export class UserService {
         const url = endpoints.user.apps.url;
         return await this.ajax.get<IApp[]>(url);
     }
-    
+
     public async app(slug: string) {
         const url = endpoints.user.app(slug).url;
         return await this.ajax.get<IApp>(url);
@@ -24,6 +24,11 @@ export class UserService {
     public async addApp(params: IApp) {
         const url = endpoints.user.addApp.url;
         return await this.ajax.post(url, params);
+    }
+
+    public async updateApp(params: IApp) {
+        const url = endpoints.user.updateApp.url;
+        return await this.ajax.put(url, params);
     }
 
     public async updateFavorite(params: { slug: string }) {

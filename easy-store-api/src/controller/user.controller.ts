@@ -130,6 +130,38 @@ class UserController {
             next(error);
         }
     }
+
+    public async updateApp(req: Request, res: Response, next: NextFunction): Promise<Response> {
+        try {
+            const token = req.header('x-access-token');
+            const currentService = new CurrentUser();
+            const email = currentService.current(token);
+            const params: IApp = req.body;
+            const utils = new Utils();
+
+            const user = await User.findOne({ email }).populate(['apps']);
+
+            if (!user) { throw new HandlerError(422, 'Usuário não encontrado'); }
+
+            const app = user.apps.find(app => app.slug === params.slug);
+
+            if (utils.EhNuloOuVazio(app)) { throw new HandlerError(428, 'Não existe nenhum app cadastro com este nome'); }
+
+            if (params.image !== app.image) {
+                const file = new File();
+                const data = await file.upload(email, params.slug, params.image, params.slug);
+                app.image = data;
+            }
+
+            const helper = new AppHelper();
+
+            await helper.update(app._id, params);
+
+            return res.json({ message: 'App atualizado com sucesso' });
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 export default new UserController();
