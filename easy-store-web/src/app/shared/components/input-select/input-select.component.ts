@@ -26,14 +26,8 @@ export class InputSelectComponent implements OnInit, ControlValueAccessor {
     @Input() keyValue?: string;
     @Input() label: string;
     @Input() required = false;
-    @Input() messageError;
-    @Input() displayError: boolean;
-    @Input() placeholder = ' ';
-    @Input() disabled = false;
-    @Input() border = false;
-    @Input() noMargin = false;
-
-    ngOnInit() { }
+    @Input() messageError: string;
+    @Input() setter: string;
 
     public get control() {
         return this.controlDir.control;
@@ -71,5 +65,11 @@ export class InputSelectComponent implements OnInit, ControlValueAccessor {
     public onBlur(value: string) {
         this.onTouched();
     }
+
+    public set(value: string): boolean {
+        return value === this.setter;
+    }
+
+    ngOnInit() { }
 }
 

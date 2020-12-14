@@ -5,7 +5,7 @@
         <form [formGroup]="form" [@listAnimation]="inputs.length">
             <ng-container *ngFor="let input of inputs">
                 <div class="input">
-                    <ng-container *ngIf="input.type !== 'select'">
+                    <ng-container *ngIf="!showStandard.includes(input.type)">
                         <app-input [control]="form.controls[input.control]" [formControlName]="input.control"
                             [type]="input.type" [required]="input.required" [disabled]="input.disabled"
                             [label]="input.label">
@@ -13,13 +13,25 @@
                     </ng-container>
                     <ng-container *ngIf="input.type === 'select'">
                         <div class="input">
-                            <app-input-select formControlName="select" [data]="selects" label="Select"
-                                keyLabel="label" keyValue="value"></app-input-select>
+                            <app-input-select formControlName="select" [data]="selects" label="Select" keyLabel="label"
+                                keyValue="value"></app-input-select>
                         </div>
                     </ng-container>
                 </div>
-            </ng-container>
 
+                <ng-container *ngIf="input.type === 'file'">
+                    <div class="input-file">
+                        <app-input-file formControlName="file"></app-input-file>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="input.type === 'color'">
+                    <div class="input-file">
+                        <app-input-color-picker formControlName="color" label="Cor Primária">
+                        </app-input-color-picker>
+                    </div>
+                </ng-container>
+            </ng-container>
 
             <div class="button">
                 <app-button label="Submit" [disabled]="!form.valid"></app-button>

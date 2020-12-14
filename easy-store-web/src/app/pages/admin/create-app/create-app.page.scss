@@ -1,0 +1,126 @@
+@import "includes";
+
+.root {
+    @include grid(12, 30px);
+    height: 100%;
+    padding: 30px 0px;
+
+    @include for-large-tablet {
+        @include grid(12);
+    }
+
+    .form-container {
+        @include grid-column-span(5);
+        @include center;
+
+        @include for-large-tablet {
+            @include grid-column-span(12);
+            grid-row: 2;
+        }
+
+        .form {
+            width: 100%;
+
+            .input {
+                margin-bottom: 30px;
+
+                &:last-child {
+                    margin: 0;
+                }
+            }
+
+            .button-submit {
+                @include end;
+            }
+        }
+    }
+
+    .container-line {
+        @include grid-column-span(2);
+        @include center;
+
+        @include for-large-tablet {
+            display: none;
+        }
+
+        .line {
+            height: 100%;
+            width: 2px;
+            background-color: #e9e9e9;
+            padding: 1px;
+        }
+    }
+
+    .preview-container {
+        @include grid-column-span(5);
+        @include start;
+
+        @include for-large-tablet {
+            @include grid-column-span(12);
+            @include center;
+            grid-row: 1;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            position: relative;
+            background-color: $white;
+            padding: 15px;
+            border: 1px solid #e9e9e9;
+            border-radius: 4px;
+            width: 250px;
+
+            .content {
+                .container-image {
+                    padding: 15px 0px;
+                    border-bottom: 1px solid #e9e9e9;
+                    margin-bottom: 15px;
+                    text-align: center;
+
+                    .content-image {
+                        margin: auto;
+                        max-width: 75px;
+                        height: 75px;
+
+                        img {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .info-container {
+                    margin-bottom: 30px;
+                    .title {
+                        margin: 0;
+                        margin-bottom: 5px;
+                    }
+
+                    .category {
+                        color: rgba($secondary, 0.4);
+                    }
+                }
+
+                .colors {
+                    @include start;
+                    margin-top: 5px;
+
+                    .color {
+                        width: 15px;
+                        height: 15px;
+                        border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+                        border-radius: 100%;
+                        margin-right: 5px;
+
+                        &:last-child {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .finish-container {
+        @include grid-column-span(12);
+    }
+}

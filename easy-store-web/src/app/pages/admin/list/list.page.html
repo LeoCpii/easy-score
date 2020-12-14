@@ -1,6 +1,19 @@
 <div class="root" [@initial]="animate">
-    <input (input)="search($event)" class="input" type="text" placeholder="Buscar por nome...">
-
+    <div class="button-add">
+        <app-button (clickEvent)="go()" label="Criar novo app"></app-button>
+    </div>
+    <input *ngIf="cards.length" (input)="search($event)" class="input" type="text" placeholder="Buscar por nome...">
+    <ng-container *ngIf="!loading && !cards.length">
+        <div class="empty-container" @animation>
+            <div class="content">
+                <div class="empty-container-icon">
+                    <app-svg svg="ghost" size="responsive"></app-svg>
+                </div>
+                <h2>Você ainda não possui nenhum app cadastrado</h2>
+                <app-button (clickEvent)="go()" label="Criar novo app"></app-button>
+            </div>
+        </div>
+    </ng-container>
 
     <ng-container *ngIf="loading">
         <div class="list">
@@ -11,10 +24,10 @@
             </div>
         </div>
     </ng-container>
-    
-    <ng-container *ngIf="!loading">
-        <div class="list" [@listAnimation]="cards.length">
-            <div class="card" *ngFor="let card of cards">
+
+    <ng-container *ngIf="!loading && cards.length">
+        <div class="list" [@listAnimation]="filtered.length">
+            <div class="card" *ngFor="let card of filtered">
                 <app-card-app-fragment [data]="card"></app-card-app-fragment>
             </div>
         </div>

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LIST_ANIMATION_LATERAL } from 'src/app/shared/animations/list.animation';
-import { PAGES } from './admin.const';
+import { SecurityService } from 'src/app/shared/services/security.service';
 
 export interface IAdminPage {
     email: string;
@@ -24,6 +24,7 @@ export class AdminPage implements OnInit, OnDestroy {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
+        private security: SecurityService,
     ) { }
 
     get name(): string {
@@ -36,6 +37,7 @@ export class AdminPage implements OnInit, OnDestroy {
     }
 
     public logout() {
+        this.security.logout();
     }
 
     ngOnDestroy() { }

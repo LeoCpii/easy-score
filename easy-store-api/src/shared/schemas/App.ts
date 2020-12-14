@@ -66,4 +66,14 @@ export class AppHelper {
     private get app(): Model<IAppDoc, {}> {
         return model<IAppDoc>('App', AppSchema);
     }
+
+    public async updateFavorite(id: string, data: { favorite: boolean }) {
+        await this.app.updateOne(
+            { _id: id, },
+            { $set: data, },
+            { upsert: true }
+        ).catch(e => {
+            throw { message: e, status: 422 };
+        });
+    }
 }

@@ -6,10 +6,12 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminPage } from './admin.page';
 import { ListPage } from './list/list.page';
 import { CardAppFragment } from './list/card-app/card-app.fragment';
+import { CreateAppPage } from './create-app/create-app.page';
 
 const PAGES = [
     AdminPage,
     ListPage,
+    CreateAppPage
 ];
 
 const FRAGMENTS = [CardAppFragment]

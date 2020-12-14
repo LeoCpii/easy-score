@@ -5,7 +5,6 @@ export interface IUser {
     name: string;
     email: string;
     apps: IAppDoc[];
-    favorites: Array<{ name: string; slug: string }>
 };
 
 interface IUserDoc extends IUser, Document { }
@@ -33,13 +32,6 @@ const UserSchema = new Schema({
         default: [],
         unique: true,
     }],
-    favorites: {
-        type: [{
-            name: { type: String },
-            slug: { type: String },
-        }],
-        default: []
-    }
 }, {
     timestamps: true
 });

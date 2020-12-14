@@ -1,9 +1,9 @@
-<div class="container-field" [class.container-field--noMargin]="noMargin">
+<div class="container-field">
     <div class="field" [class.field--invalid]="shouldDisplayError()">
         <div class="field-float">
             <select #input (input)="onChange($event.target.value)" (blur)="onBlur($event.target.value)">
-                <option [value]="label" disabled selected>{{ label }}</option>
-                <option [value]="item[keyValue]" *ngFor="let item of data">{{ item[keyLabel] }}</option>
+                <option [value]="label" disabled [selected]="!setter">{{ label }}</option>
+                <option [value]="item[keyValue]" *ngFor="let item of data" [selected]="set(item[keyValue])">{{ item[keyLabel] }}</option>
             </select>
         </div>
         <button (click)="open()" class="button" type="button" mat-icon-button matSuffix>

@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { ComponentsModule } from './components/components.module';
+import { LoggedGuard } from './guards/logged.guard';
 
 // lIB
 import { JWT } from './lib/jwt.lib';
 
 // Service
+import { SecurityService } from './services/security.service';
+import { UserService } from './services/user.service';
 
 // Guard
 
@@ -12,11 +15,11 @@ import { JWT } from './lib/jwt.lib';
 
 // Pipes
 
-const SERVICES = [];
+const SERVICES = [SecurityService, UserService];
 
 const LIBS = [JWT];
 
-const GUARDS = [];
+const GUARDS = [LoggedGuard];
 
 const DIRECTIVES = [];
 

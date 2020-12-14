@@ -4,6 +4,10 @@
     height: 100%;
     padding: 30px 0px;
 
+    .button-add {
+        @include end;
+    }
+
     .input {
         border: none;
         background-color: transparent;
@@ -11,6 +15,7 @@
         outline: none;
         margin-bottom: 30px;
         margin-top: 30px;
+        width: 100%;
 
         &::placeholder {
             opacity: 0.4;
@@ -22,11 +27,34 @@
         margin-top: 30px;
 
         .card {
-            @include grid-column-span(4);
+            @include grid-column-span(3);
 
             .loading-container {
                 height: 299px;
             }
+        }
+    }
+
+    .empty-container {
+        padding: 30px;
+        @include center;
+        width: 100%;
+        height: 250px;
+
+        .content {
+            text-align: center;
+
+            @include for-mobile {
+                h2 {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        .empty-container-icon {
+            margin: auto;
+            margin-bottom: 15px;
+            width: 100px;
         }
     }
 }

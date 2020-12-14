@@ -18,6 +18,10 @@
                 @include grid-column-span(4);
             }
 
+            .input-file {
+                @include grid-column-span(12);
+            }
+
             .button {
                 @include grid-column-span(12);
                 @include end;

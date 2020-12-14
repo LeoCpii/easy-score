@@ -80,6 +80,12 @@ export const INPUTS = [
         placeholder: '',
         messageError: '',
     },
+    {
+        type: 'file',
+    },
+    {
+        type: 'color',
+    },
 ]
 
 export const RADIO_GROUP = [

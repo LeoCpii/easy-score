@@ -1,61 +1,60 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LIST_ANIMATION_LATERAL } from 'src/app/shared/animations/list.animation';
-import { SLIDE_Y_SIMPLE } from 'src/app/shared/animations/slide.animation';
-import { ICardApp } from './card-app/card-app.fragment';
+import { SLIDE_Y_SIMPLE, SLIDE_Y_STATE } from 'src/app/shared/animations/slide.animation';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
     selector: 'app-list-page',
     templateUrl: './list.page.html',
     styleUrls: ['./list.page.scss'],
-    animations: [SLIDE_Y_SIMPLE, LIST_ANIMATION_LATERAL]
+    animations: [SLIDE_Y_SIMPLE, LIST_ANIMATION_LATERAL, SLIDE_Y_STATE]
 })
 
 export class ListPage implements OnInit {
     public animate = 'ready';
     public timeout: NodeJS.Timeout;
-    public cards: ICardApp[] = [];
+    public cards: IApp[] = [];
+    public filtered: IApp[] = [];
     public arr = new Array(15);
     public loading = true;
 
-    constructor() { }
+    constructor(
+        private user: UserService,
+        private router: Router,
+    ) { }
 
     public search(e: Event) {
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
-            const word = e.target['value'];
-            console.log(word);
+            this.loading = true;
+            const word = e.target['value'] as string;
+            this.filtered = this.cards.filter(card =>
+                card.name.toLocaleLowerCase().includes(word.toLocaleLowerCase()));
+            setTimeout(() => this.loading = false, 500);
         }, 500);
     }
 
-    public getCards(): void {
-        setTimeout(() => {
-            this.cards = [
-                {
-                    slug: 'spotify',
-                    image: 'https://www.masterambiental.com.br/wp-content/uploads/2020/07/image-gallery-spotify-logo.png',
-                    name: 'Spotify',
-                    category: 'Música',
-                    favorite: false,
-                    color: {
-                        primary: '#1ed760',
-                        secondary: '#191515',
-                    }
-                },
-                {
-                    slug: 'netflix',
-                    image: 'https://www.freepnglogos.com/uploads/netflix-logo-circle-png-5.png',
-                    name: 'Netflix',
-                    category: 'Streaming',
-                    favorite: true,
-                    color: {
-                        primary: '#e50913',
-                        secondary: '#000000',
-                    }
-                }
-            ]
+    private resetPage() {
+        this.filtered = this.cards;
+        this.sort();
+    }
 
-            this.loading = false;
-        }, 700);
+    private sort() {
+        this.cards.sort((a, b) => a.slug > b.slug ? 1 : -1);
+    }
+
+    private getCards(): void {
+        this.user.apps()
+            .then(response => {
+                this.cards = response
+                this.resetPage();
+            })
+            .finally(() => setTimeout(() => this.loading = false, 500));
+    }
+
+    public go() {
+        this.router.navigate(['admin', 'create-app']);
     }
 
     ngOnInit() {

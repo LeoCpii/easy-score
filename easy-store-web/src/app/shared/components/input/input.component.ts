@@ -95,7 +95,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
 
     public sanitize(value: string) {
-        const regex = /[!@#$%^&*()-\.,.\s+?":{}|<>]/g;
+        const regex = /[!@#$%^&*()-\/\.,.\s+?":{}|<>]/g;
         return value.replace(regex, '');
     }
 

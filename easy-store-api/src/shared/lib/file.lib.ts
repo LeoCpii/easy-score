@@ -12,7 +12,7 @@ export class File {
 
     private generatePath(arr: string[]): string {
         const path = arr.reduce((total, current, index) => total += `${current}\/`, '');
-        return path.substring(0, path.length-1);
+        return path.substring(0, path.length - 1);
     }
 
     private createPublicFileURL(storageName: string) {
@@ -22,9 +22,9 @@ export class File {
     private save(data: string, path: string): void {
         fs.writeFileSync(path, data, { encoding: 'base64' });
     }
-    
+
     private exclude(path: string): void {
-        fs.unlink(path, (error) => { console.log('exclude', error); });
+        fs.unlink(path, (error) => { });
     }
 
     public async upload(email: string, app: string, base64: string, slug: string) {
@@ -36,7 +36,7 @@ export class File {
             this.save(data, name);
 
             const path = this.generatePath([email, app, name]);
-        
+
             this.storage.upload(name, path).then(() => this.exclude(name));
 
             return this.createPublicFileURL(path);

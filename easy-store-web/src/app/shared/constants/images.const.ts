@@ -1,8 +1,10 @@
 export const IMAGES = {
+    empty: {
+        app: '../assets/images/empty/app.svg'
+    },
     login: {
-        initial: '../assets/images/login/card_and_coins.svg',
-        revenue: '../assets/images/login/revenue.svg',
+        login: '../assets/images/login/login.svg',
         forgot: '../assets/images/login/forgot.svg',
-        password: '../assets/images/login/login.svg',
+        create: '../assets/images/login/create.svg',
     }
 };

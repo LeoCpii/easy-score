@@ -16,6 +16,14 @@ export const SLIDE_X_L_TO_R = trigger('slide_XLR', [
     ]),
 ]);
 
+export const SLIDE_X_R_TO_L = trigger('slide_XRL', [
+    state('ready', style({ opacity: 1 })),
+    transition('void => ready', [
+        style({ opacity: 0, transform: 'translateX(20px)' }),
+        animate('200ms 0s ease-in'),
+    ]),
+]);
+
 export const SLIDE_Y_EVENT = trigger('slide_Y_event', [
     state('open', style({ opacity: 1, transform: 'translateY(0px)' })),
     state('closed', style({ opacity: '0', transform: 'translateY(-20px)' })),

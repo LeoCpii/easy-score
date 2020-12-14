@@ -14,7 +14,11 @@ routes.post('/security/signIn', SecurityController.login);
 routes.post('/security/create-user', SecurityController.createUser);
 
 // USER
-routes.get('/users', UserController.discovery);
+routes.get('/user', UserController.discovery);
+routes.get('/user/apps', UserController.apps);
+routes.get('/user/app', UserController.app);
 routes.post('/user/add-app', Auth.autorize, UserController.addApp);
+routes.put('/user/update-favorite', Auth.autorize, UserController.addFavorite);
+
 
 export default routes;

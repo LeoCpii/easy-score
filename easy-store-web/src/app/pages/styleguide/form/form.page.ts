@@ -23,6 +23,8 @@ export class FormPage implements OnInit {
         email: new FormControl(''),
         password: new FormControl(''),
         select: new FormControl(''),
+        file: new FormControl(''),
+        color: new FormControl(''),
     });
 
     constructor() { }
@@ -37,6 +39,10 @@ export class FormPage implements OnInit {
 
     public get selects() {
         return SELECT;
+    }
+
+    public get showStandard() {
+        return ['select', 'file', 'color'];
     }
 
     ngOnInit() {

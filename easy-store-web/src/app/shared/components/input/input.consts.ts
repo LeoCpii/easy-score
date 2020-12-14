@@ -19,6 +19,6 @@ export const FIELD_MESSAGES = {
     password: 'Senha inválida',
 };
 
-export const MASKS = ['cpf', 'cel', 'tel'];
+export const MASKS = ['cpf', 'cel', 'tel', 'cnpj'];
 
 export const NUMBER = ['number', 'decimal'];

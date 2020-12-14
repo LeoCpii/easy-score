@@ -1,0 +1,72 @@
+<app-modal-page title="Adicionar APP" (end)="close()">
+    <div class="root">
+        <ng-container *ngIf="!isFinish">
+            <div [@slide_XLR]="animate" class="form-container">
+                <div class="form">
+                    <form [formGroup]="form" (submit)="create()">
+                        <div class="input">
+                            <app-input [control]="form.controls.name" formControlName="name"
+                                label="Digite o nome do aplicativo" [required]="true"></app-input>
+                        </div>
+                        <div class="input">
+                            <div class="input-file">
+                                <app-input-file formControlName="image"></app-input-file>
+                            </div>
+                        </div>
+                        <div class="input">
+                            <app-input-color-picker [color]="data?.color.primary" formControlName="primary" label="Cor Primária">
+                            </app-input-color-picker>
+                        </div>
+                        <div class="input">
+                            <app-input-color-picker [color]="data?.color.secondary" formControlName="secondary" label="Cor Secundária">
+                            </app-input-color-picker>
+                        </div>
+                        <div class="input">
+                            <app-input-select formControlName="category" [setter]="data?.category" [data]="selects" label="Selecione a categoria"
+                                keyLabel="label" keyValue="value"></app-input-select>
+                        </div>
+                        <div class="button-submit">
+                            <app-button type="submit" label="Salvar" [disabled]="!form.valid" [isLoading]="isLoading"></app-button>
+                        </div>
+                    </form>
+
+                    <app-form-log [form]="form"></app-form-log>
+                </div>
+            </div>
+
+            <div class="container-line">
+                <div class="line"></div>
+            </div>
+
+            <div [@slide_XRL]="animate" class="preview-container">
+                <div class="card">
+                    <div class="content">
+                        <div class="container-image">
+                            <div class="content-image">
+                                <img [src]="image" alt="">
+                            </div>
+                        </div>
+                        <div class="info-container">
+                            <h3 class="title">{{ name }}</h3>
+                            <span class="category">{{ category }}</span>
+                            <div class="colors">
+                                <div class="color" [ngStyle]="{'background': primary}"></div>
+                                <div class="color" [ngStyle]="{'background': secondary}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="isFinish">
+            <div class="finish-container" @animation>
+                <h1>App criado com sucesso!</h1>
+                <div>
+                    <app-button (click)="close()" label="Voltar"></app-button>
+                </div>
+            </div>
+        </ng-container>
+
+    </div>
+</app-modal-page>

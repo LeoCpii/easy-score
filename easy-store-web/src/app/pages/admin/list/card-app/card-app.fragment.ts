@@ -1,16 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-export interface ICardApp {
-    slug: string;
-    image: string;
-    name: string;
-    category: string;
-    favorite: boolean;
-    color: {
-        primary: string;
-        secondary: string;
-    }
-}
+import { Router } from '@angular/router';
+import { CategoryEnum } from 'src/app/shared/enum/category.enum';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
     selector: 'app-card-app-fragment',
@@ -19,14 +10,27 @@ export interface ICardApp {
 })
 
 export class CardAppFragment implements OnInit {
-    @Input() data: ICardApp;
+    @Input() data: IApp;
 
     public state: boolean;
 
-    constructor() { }
+    constructor(
+        private user: UserService,
+        private router: Router
+    ) { }
+
+    get category() {
+        return CategoryEnum.description(this.data.category);
+    }
+
+    public updateFavorite(): void {
+        const params = { slug: this.data.slug };
+        this.user.updateFavorite(params)
+            .then(() => this.data.favorite = !this.data.favorite);
+    }
 
     public go(): void {
-
+        this.router.navigate(['admin', 'edit-app', this.data.slug]);
     }
 
     ngOnInit() { }
