@@ -2,7 +2,7 @@
     <div class="button-add">
         <app-button (clickEvent)="go()" label="Criar novo app" [fullWidth]="hasMobile"></app-button>
     </div>
-    <input *ngIf="cards.length" (input)="search($event)" class="input" type="text" placeholder="Buscar por nome...">
+    <input *ngIf="loading || cards.length" (input)="search($event)" class="input" type="text" placeholder="Buscar por nome...">
     <ng-container *ngIf="!loading && !cards.length">
         <div class="empty-container" @animation>
             <div class="content">
