@@ -1,6 +1,6 @@
 <div class="root" [@initial]="animate">
     <div class="button-add">
-        <app-button (clickEvent)="go()" label="Criar novo app"></app-button>
+        <app-button (clickEvent)="go()" label="Criar novo app" [fullWidth]="hasMobile"></app-button>
     </div>
     <input *ngIf="cards.length" (input)="search($event)" class="input" type="text" placeholder="Buscar por nome...">
     <ng-container *ngIf="!loading && !cards.length">
@@ -29,6 +29,17 @@
         <div class="list" [@listAnimation]="filtered.length">
             <div class="card" *ngFor="let card of filtered">
                 <app-card-app-fragment [data]="card"></app-card-app-fragment>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="!loading && !filtered.length">
+        <div class="empty-container" @animation>
+            <div class="content">
+                <div class="empty-container-icon">
+                    <app-svg svg="ghost" size="responsive"></app-svg>
+                </div>
+                <h2>Nenhum app encontrado =/</h2>
             </div>
         </div>
     </ng-container>

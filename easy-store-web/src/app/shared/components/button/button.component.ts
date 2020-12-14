@@ -33,8 +33,8 @@ export class ButtonComponent implements OnInit {
     getClass(): string[] {
         const ret = [];
         if (this.fullWidth) { ret.push('full-width'); }
-        if (!this.theme) { this.theme = 'primary' }
-        if (this.noMin) { ret.push('no-min') }
+        if (!this.theme) { this.theme = 'primary'; }
+        if (this.noMin) { ret.push('no-min'); }
 
         return [...ret, this.theme || 'primary'];
     }

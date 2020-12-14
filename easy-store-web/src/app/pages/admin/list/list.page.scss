@@ -6,6 +6,10 @@
 
     .button-add {
         @include end;
+
+        @include for-large-tablet {
+            display: block;
+        }
     }
 
     .input {
@@ -28,6 +32,18 @@
 
         .card {
             @include grid-column-span(3);
+
+            @include for-large-tablet {
+                @include grid-column-span(4);
+            }
+
+            @include for-tablet {
+                @include grid-column-span(6);
+            }
+
+            @include for-mobile {
+                @include grid-column-span(12);
+            }
 
             .loading-container {
                 height: 299px;

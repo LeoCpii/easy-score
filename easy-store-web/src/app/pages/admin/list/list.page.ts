@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { LIST_ANIMATION_LATERAL } from 'src/app/shared/animations/list.animation';
 import { SLIDE_Y_SIMPLE, SLIDE_Y_STATE } from 'src/app/shared/animations/slide.animation';
 import { UserService } from 'src/app/shared/services/user.service';
+import { WindowService } from 'src/app/shared/services/window.service';
 
 @Component({
     selector: 'app-list-page',
@@ -18,20 +20,29 @@ export class ListPage implements OnInit {
     public filtered: IApp[] = [];
     public arr = new Array(15);
     public loading = true;
+    public hasMobile = false;
+    public sub: Subscription;
 
     constructor(
         private user: UserService,
         private router: Router,
-    ) { }
+        private window: WindowService,
+    ) { this.hasMobile = window.hasMobile; }
 
     public search(e: Event) {
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
-            this.loading = true;
             const word = e.target['value'] as string;
-            this.filtered = this.cards.filter(card =>
-                card.name.toLocaleLowerCase().includes(word.toLocaleLowerCase()));
-            setTimeout(() => this.loading = false, 500);
+            if (word.length > 2) {
+                this.loading = true;
+                this.filtered = this.cards.filter(card =>
+                    card.name.toLocaleLowerCase().includes(word.toLocaleLowerCase()));
+                setTimeout(() => this.loading = false, 500);
+            } else {
+                this.loading = true;
+                this.resetPage();
+                setTimeout(() => this.loading = false, 500);
+            }
         }, 500);
     }
 
@@ -57,7 +68,15 @@ export class ListPage implements OnInit {
         this.router.navigate(['admin', 'create-app']);
     }
 
+    ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
+
     ngOnInit() {
         this.getCards();
+        this.sub = this.window.change.subscribe((hasMobile: boolean) => {
+            console.log(hasMobile);
+            this.hasMobile = hasMobile
+        });
     }
 }
