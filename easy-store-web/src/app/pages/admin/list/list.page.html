@@ -25,7 +25,7 @@
         </div>
     </ng-container>
 
-    <ng-container *ngIf="!loading && cards.length">
+    <ng-container *ngIf="!loading && filtered.length">
         <div class="list" [@listAnimation]="filtered.length">
             <div class="card" *ngFor="let card of filtered">
                 <app-card-app-fragment [data]="card"></app-card-app-fragment>

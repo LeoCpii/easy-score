@@ -32,8 +32,8 @@ export class AdminPage implements OnInit, OnDestroy {
         return `Olá, ${name}`;
     }
 
-    public go(route: string): void {
-        this.router.navigate(['admin', route]);
+    public go(): void {
+        this.router.navigate(['admin']);
     }
 
     public logout() {
