@@ -36,7 +36,7 @@ export class PasswordRequirementsComponent implements OnInit, OnDestroy {
         this.data[2].active = this.hasUpperCase(pass);
         this.data[3].active = pass && pass === confirm;
 
-        const isValid = this.data.filter(item => !item.active).length === 0;
+        const isValid = !this.data.some(item => !item.active);
 
         this.validator.isValid.emit(isValid);
     }

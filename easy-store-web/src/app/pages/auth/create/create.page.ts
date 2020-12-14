@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { LIST_ANIMATION_LATERAL } from 'src/app/shared/animations/list.animation';
 import { AlertService } from 'src/app/shared/components/alert/alert.service';
+import { PasswordRequirementsService } from 'src/app/shared/components/password-requirements/password-requirement.service';
 import { IMAGES } from 'src/app/shared/constants/images.const';
 import { FirebaseAuthService } from 'src/app/shared/services/firebase-auth.service';
 import { SecurityService } from 'src/app/shared/services/security.service';
@@ -15,11 +17,13 @@ import { INPUTS } from './create.consts';
     animations: [LIST_ANIMATION_LATERAL]
 })
 
-export class CreatePage implements OnInit {
+export class CreatePage implements OnInit, OnDestroy {
     public animate = 'ready';
     public inputs = [];
     public isLoading: boolean;
     public error: string;
+    public sub: Subscription;
+    public isValid: boolean;
 
     public form = new FormGroup({
         name: new FormControl(''),
@@ -33,6 +37,7 @@ export class CreatePage implements OnInit {
         private firebaseAuth: FirebaseAuthService,
         private security: SecurityService,
         private alert: AlertService,
+        private validator: PasswordRequirementsService
     ) { }
 
     get images() {
@@ -66,12 +71,18 @@ export class CreatePage implements OnInit {
         this.security.saveToken(token);
         this.router.navigate(['admin']);
     }
-    
+
     private getError(e: { error: { message: string; }; message: string; }) {
         this.alert.show(e.error ? e.error.message : e.message)
     }
 
+    ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
+
     ngOnInit() {
+        this.sub = this.validator.isValid.subscribe((isValid: boolean) => this.isValid = isValid);
+
         setTimeout(() => {
             this.inputs = INPUTS;
         }, 0);

@@ -48,9 +48,19 @@
                     color: $white;
                     margin-bottom: 30px;
 
-                    span {
-                        @include crypto-coin;
+                    .font {
+                        text-transform: uppercase;
                         color: $primary;
+                        font-size: 3rem;
+
+                        @include for-large-tablet {
+                            font-size: 1.75rem;
+                        }
+                    }
+
+                    .dot {
+                        text-transform: uppercase;
+                        color: $white;
                         font-size: 3rem;
 
                         @include for-large-tablet {
