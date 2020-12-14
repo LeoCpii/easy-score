@@ -3,18 +3,22 @@
   "version": "1.0.0",
   "description": "Documents Service",
   "main": "src/_server/server.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LeoCpii/easy-score.git"
+  },
   "scripts": {
-    "test": "SET NODE_ENV=test & nyc mocha -r sucrase/register src/test/**/*.spec.ts",
+    "test": "SET NODE_ENV=test & nyc mocha -r sucrase/register test/**/*.spec.ts",
     "dev": "nodemon src/_server/server.ts",
     "start": "node dist/_server/server.js",
     "build": "sucrase ./src -d ./dist --transforms typescript,imports",
     "deploy": "gcloud app deploy"
   },
   "dependencies": {
+    "@google-cloud/storage": "^3.2.1",
     "@sentry/node": "^5.28.0",
     "@sentry/tracing": "^5.28.0",
     "@types/cors": "^2.8.6",
-    "@google-cloud/storage": "^3.2.1",
     "axios": "^0.19.2",
     "chai-http": "^4.3.0",
     "coingecko-api": "^1.0.10",
@@ -25,6 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.17",
     "nodemon": "^2.0.2",
+    "nyc": "^15.1.0",
     "sucrase": "^3.13.0"
   },
   "devDependencies": {

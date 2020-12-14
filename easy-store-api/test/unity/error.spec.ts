@@ -1,8 +1,13 @@
 import { expect } from 'chai';
 import { HandlerError } from '../../src/shared/lib/error.lib';
+import dotenv from 'dotenv';
 import 'mocha';
 
-describe('Servico de erro', () => {
+describe('error.lib', () => {
+    beforeEach(() => {
+        dotenv.config();
+    });
+
     it(`Deve retornar objeto de erro quando message for string`, () => {
         const data: {} = new HandlerError(500, 'Erro interno', false);
         expect(data['status']).to.equal(500);

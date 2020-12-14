@@ -5,8 +5,8 @@ export class Utils {
         return ['development', 'test'];
     }
 
-    get isNoProd() {
-        return this.WHITE_LIST.includes(process.env.NODE_ENV);
+    get isProd() {
+        return !this.WHITE_LIST.includes(process.env.NODE_ENV);
     }
 
     public EhNuloOuVazio(element: any): boolean {
@@ -19,8 +19,8 @@ export class Utils {
         ) ? true : false;
     }
 
-    public arrayItemInArray(arr = [], arr1 = []): boolean {
-        return Boolean(arr.map(item => arr1.find(sub => sub === item)).filter(item => item).length);
+    public hasStatusError(status: number) {
+        return !(status >= 200 && status <= 299);
     }
 
     public slug(str: string): string {
@@ -29,11 +29,11 @@ export class Utils {
         str = str.replace(/_/g, '')
         str = str.replace(/[^\w\s]/gi, '')
         str = str.replace(/( )+/g, '-');
-    
-        if(str.substring(str.length-1, str.length) === '-') {
-            return str.substring(0, str.length-1);
+
+        if (str.substring(str.length - 1, str.length) === '-') {
+            return str.substring(0, str.length - 1);
         }
-    
+
         return str;
     }
 }

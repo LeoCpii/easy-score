@@ -6,11 +6,6 @@ export interface IError {
     redirect: boolean;
     origin?: string;
 }
-
-export class DbError {
-    
-}
-
 export class HandlerError {
     private status: number;
     private message: string | object | string[];
@@ -23,7 +18,7 @@ export class HandlerError {
         this.status = status;
         this.redirect = redirect;
 
-        if(utils.isNoProd) {
+        if(!utils.isProd) {
             this.origin = origin || process.env.PROJECT_NAME;
         }
     }

@@ -51,7 +51,7 @@ class App {
     private handler(): void {
         this.express.use((err: IError, req: Request, res: Response, next: NextFunction) => {
             const utils = new Utils();
-            const dev: boolean = utils.isNoProd;
+            const dev: boolean = !utils.isProd;
 
             if (!err.status) { err.status = 500; }
 
