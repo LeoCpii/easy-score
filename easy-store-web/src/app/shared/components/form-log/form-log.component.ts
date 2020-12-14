@@ -9,5 +9,4 @@ import { FormGroup } from '@angular/forms';
 
 export class FormLogComponent {
     @Input() form: FormGroup;
-    @Input() type: string;
 }

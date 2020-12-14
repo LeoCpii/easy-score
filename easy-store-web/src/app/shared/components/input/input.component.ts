@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Optional, Self } from '@angular/core';
-import { ControlValueAccessor, NgControl, FormControl, FormGroup, ValidatorFn, ValidationErrors, FormGroupDirective, NgForm } from '@angular/forms';
+import { ControlValueAccessor, NgControl, FormControl, FormGroup, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { FIELD_MESSAGES, MASKS, NUMBER } from './input.consts';
 import { FormatterService } from '../../services/formatter.service';
 import { ValidatorService } from '../../services/validator.service';

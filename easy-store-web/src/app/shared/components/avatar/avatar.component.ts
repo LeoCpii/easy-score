@@ -11,16 +11,13 @@ export class AvatarComponent implements OnInit {
     @Input() size: 'tiny' | 'small' | 'medium' | 'large' = 'medium';
     @Input() img: string;
     @Input() user: string;
-    @Input() showName: boolean;
     @Input() sideName: 'left' | 'right';
     @Input() isLoading = false;
-    @Input() icon: string;
     @Input() keepImage: boolean;
 
     constructor() { }
 
     public nameInitials(): string {
-        console.log('this.user', this.user);
         const names: string[] = this.user.trim().split(' ');
         if (!this.user || this.img) { return ''; }
         const firstInitial = names[0].charAt(0);
