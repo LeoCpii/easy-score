@@ -33,11 +33,9 @@ export class File {
             const name = `${slug}.${ext}`;
             const data = base64.replace(/^data:([A-Za-z-+/]+);base64,/, '');
 
-            this.save(data, name);
-
             const path = this.generatePath([email, app, name]);
 
-            this.storage.upload(path, base64).then(() => this.exclude(name));
+            this.storage.upload(path, data).then(() => this.exclude(name));
 
             return this.createPublicFileURL(path);
         } catch (error) {

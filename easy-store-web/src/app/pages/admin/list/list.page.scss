@@ -52,6 +52,7 @@
             .card-create {
                 @include center;
                 width: 100%;
+                min-height: 298px;
                 height: 100%;
                 background-color: $white;
                 border-radius: 4px;
