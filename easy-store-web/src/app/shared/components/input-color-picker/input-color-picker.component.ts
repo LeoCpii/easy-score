@@ -71,6 +71,7 @@ export class InputColorPickerComponent implements OnInit, ControlValueAccessor {
 
     ngOnInit() {
         this.color = this.color || '#000';
+        this.onChange(this.color);
     }
 }
 
