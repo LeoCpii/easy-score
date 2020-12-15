@@ -66,7 +66,7 @@ export class CreateAppPage implements OnInit {
     }
 
     public close(): void {
-        if (this.form.touched) {
+        if (this.form.touched && !this.isFinish) {
             const out = confirm('Você não salvou suas alterações. Deseja continuar?');
             if (out) { this.router.navigate(['admin', 'list']);}
         } else {
