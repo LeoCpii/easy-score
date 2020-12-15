@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { SLIDE_X_L_TO_R, SLIDE_X_R_TO_L, SLIDE_Y_STATE } from 'src/app/shared/animations/slide.animation';
 import { AlertService } from 'src/app/shared/components/alert/alert.service';
 import { IMAGES } from 'src/app/shared/constants/images.const';
@@ -65,7 +66,12 @@ export class CreateAppPage implements OnInit {
     }
 
     public close(): void {
-        this.router.navigate(['admin', 'list']);
+        if (this.form.touched) {
+            const out = confirm('Você não salvou suas alterações. Deseja continuar?');
+            if (out) { this.router.navigate(['admin', 'list']);}
+        } else {
+            this.router.navigate(['admin', 'list']);
+        }
     }
 
     public do(): void {
