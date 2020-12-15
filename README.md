@@ -42,7 +42,7 @@ Foi desenvolvida utilizando `Nodejs` e `express`. Para hospedagem utilizei o ser
 
 - [x] Autenticação completa utilizando o Firebase Auth;
   - Login
-  - Criar
+  - Criar conta
   - Esqueci minha senha
 - [x] Responsivo para WEB, Tablet e Mobile.
 - [x] C.R.U.D.
