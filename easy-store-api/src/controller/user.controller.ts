@@ -162,6 +162,28 @@ class UserController {
             next(error);
         }
     }
+
+    public async deleteApp(req: Request, res: Response, next: NextFunction): Promise<Response> {
+        try {
+            const token = req.header('x-access-token');
+            const currentService = new CurrentUser();
+            const email = currentService.current(token);
+            const { slug } = req.params;
+
+            const user = await User.findOne({ email }).populate(['apps']);
+
+            if (!user) { throw new HandlerError(422, 'Usuário não encontrado'); }
+
+            const app = user.apps.find(app => app.slug === slug);
+
+            const helper = new AppHelper();
+
+            await helper.delete(app._id);
+            return res.json({ message: 'App excluído com sucesso' });
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 export default new UserController();

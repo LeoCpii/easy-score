@@ -31,6 +31,11 @@ export class UserService {
         return await this.ajax.put(url, params);
     }
 
+    public async deleteApp(slug: string) {
+        const url = endpoints.user.deleteApp(slug).url;
+        return await this.ajax.delete(url);
+    }
+
     public async updateFavorite(params: { slug: string }) {
         const url = endpoints.user.updateFavorite.url;
         return await this.ajax.put(url, params);

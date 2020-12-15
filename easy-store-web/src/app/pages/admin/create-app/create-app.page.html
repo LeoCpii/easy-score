@@ -1,6 +1,9 @@
 <app-modal-page title="Adicionar APP" (end)="close()">
     <div class="root">
         <ng-container *ngIf="!isFinish">
+            <div *ngIf="data" class="button-exclude">
+                <app-button (clickEvent)="exclude()" label="Excluir app" [isLoading]="isLoadingButtonExclude"></app-button>
+            </div>
             <div [@slide_XLR]="animate" class="form-container">
                 <div class="form">
                     <form [formGroup]="form" (submit)="do()">
@@ -14,19 +17,22 @@
                             </div>
                         </div>
                         <div class="input">
-                            <app-input-color-picker [color]="data?.color.primary" formControlName="primary" label="Cor Primária">
+                            <app-input-color-picker [color]="data?.color.primary" formControlName="primary"
+                                label="Cor Primária">
                             </app-input-color-picker>
                         </div>
                         <div class="input">
-                            <app-input-color-picker [color]="data?.color.secondary" formControlName="secondary" label="Cor Secundária">
+                            <app-input-color-picker [color]="data?.color.secondary" formControlName="secondary"
+                                label="Cor Secundária">
                             </app-input-color-picker>
                         </div>
                         <div class="input">
-                            <app-input-select formControlName="category" [setter]="data?.category" [data]="selects" label="Selecione a categoria"
-                                keyLabel="label" keyValue="value"></app-input-select>
+                            <app-input-select formControlName="category" [setter]="data?.category" [data]="selects"
+                                label="Selecione a categoria" keyLabel="label" keyValue="value"></app-input-select>
                         </div>
                         <div class="button-submit">
-                            <app-button type="submit" label="Salvar" [disabled]="!form.valid" [isLoading]="isLoading"></app-button>
+                            <app-button type="submit" label="Salvar" [disabled]="!form.valid" [isLoading]="isLoading">
+                            </app-button>
                         </div>
                     </form>
                 </div>

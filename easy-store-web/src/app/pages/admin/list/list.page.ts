@@ -33,16 +33,10 @@ export class ListPage implements OnInit {
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
             const word = e.target['value'] as string;
-            if (word.length > 2) {
-                this.loading = true;
-                this.filtered = this.cards.filter(card =>
-                    card.name.toLocaleLowerCase().includes(word.toLocaleLowerCase()));
-                setTimeout(() => this.loading = false, 500);
-            } else {
-                this.loading = true;
-                this.resetPage();
-                setTimeout(() => this.loading = false, 500);
-            }
+            this.loading = true;
+            this.filtered = this.cards.filter(card =>
+                card.name.toLocaleLowerCase().includes(word.toLocaleLowerCase()));
+            setTimeout(() => this.loading = false, 500);
         }, 500);
     }
 

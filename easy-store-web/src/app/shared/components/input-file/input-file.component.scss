@@ -2,6 +2,24 @@
 
 $dimenssion: 20px;
 
+.root {
+    position: relative;
+
+    .messagem-error {
+        color: $red;
+        position: absolute;
+        opacity: 0;
+        bottom: 0;
+        transition: all 0.2s $ease-in-out;
+        font-size: 12px;
+
+        &.active {
+            bottom: -20px;
+            opacity: 1;
+        }
+    }
+}
+
 .container-input-file {
     @include center;
     height: 136px;
@@ -34,7 +52,7 @@ $dimenssion: 20px;
     .info-container {
         @include center;
         margin-bottom: 15px;
-        
+
         .icon {
             display: flex;
             justify-content: center;
@@ -47,6 +65,11 @@ $dimenssion: 20px;
 
             &--success {
                 background: $green;
+                color: $white;
+            }
+
+            &--error {
+                background: $red;
                 color: $white;
             }
 

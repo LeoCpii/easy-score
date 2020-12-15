@@ -22,6 +22,8 @@ export class CreateAppPage implements OnInit {
     public animate = 'ready';
     public isFinish: boolean;
     public isLoading: boolean;
+    public isLoadingButtonExclude: boolean;
+    public messageSuccess: string;
 
     public form = new FormGroup({
         name: new FormControl('', Validators.required),
@@ -62,16 +64,24 @@ export class CreateAppPage implements OnInit {
         return this.form.value.secondary || '#e9e9e9';
     }
 
-    public get messageSuccess() {
-        return this.data ? 'App editado com sucesso!' : 'App criado com sucesso!';
-    }
-
     public close(): void {
         this.router.navigate(['admin', 'list']);
     }
 
     public do(): void {
         this.data ? this.update() : this.create();
+    }
+
+    public exclude() {
+        this.isLoadingButtonExclude = true;
+
+        this.user.deleteApp(this.data.slug)
+            .then(() => {
+                this.messageSuccess = 'App excluído com sucesso';
+                setTimeout(() => this.isFinish = true, 500)
+            })
+            .catch(error => this.alert.show('Erro ao excluir app'))
+            .finally(() => setTimeout(() => this.isLoadingButtonExclude = false, 500))
     }
 
     private create() {
@@ -87,8 +97,11 @@ export class CreateAppPage implements OnInit {
         };
 
         this.user.addApp(params)
-            .then(() => setTimeout(() => this.isFinish = true, 500))
-            .catch(() => this.alert.show('Erro ao criar categoria'))
+            .then(() => {
+                this.messageSuccess = 'App criado com sucesso';
+                setTimeout(() => this.isFinish = true, 500)
+            })
+            .catch(error => this.alert.show('Erro ao salvar app'))
             .finally(() => setTimeout(() => this.isLoading = false, 500))
     }
 
@@ -106,8 +119,11 @@ export class CreateAppPage implements OnInit {
         };
 
         this.user.updateApp(params)
-            .then(() => setTimeout(() => this.isFinish = true, 500))
-            .catch(() => this.alert.show('Erro ao editar categoria'))
+            .then(() => {
+                this.messageSuccess = 'App editado com sucesso';
+                setTimeout(() => this.isFinish = true, 500)
+            })
+            .catch(error => this.alert.show('Erro ao editar app'))
             .finally(() => setTimeout(() => this.isLoading = false, 500))
     }
 
@@ -120,7 +136,6 @@ export class CreateAppPage implements OnInit {
             category: this.data.category,
         });
     }
-
 
     ngOnInit() {
         this.data = this.route.snapshot.data.data;

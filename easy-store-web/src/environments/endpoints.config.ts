@@ -12,6 +12,7 @@ export const endpoints = {
         app: (slug: string) => new Endpoints(`/user/app?slug=${slug}`, false, `/user/app?slug=${slug}`),
         addApp: new Endpoints('/user/add-app', false, '/user/add-app'),
         updateApp: new Endpoints('/user/update-app', false, '/user/update-app'),
+        deleteApp: (slug: string) => new Endpoints(`/user/delete-app/${slug}`, false, `/user/delete-app/${slug}`),
         updateFavorite: new Endpoints('/user/update-favorite', false, '/user/update-favorite'),
     }
 };

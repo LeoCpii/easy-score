@@ -96,4 +96,13 @@ export class AppHelper {
             throw { message: e, status: 422 };
         });
     }
+
+    public async delete(id: string) {
+        await this.app.deleteOne(
+            { _id: id, },
+            { upsert: true }
+        ).catch(e => {
+            throw { message: e, status: 422 };
+        });
+    }
 }

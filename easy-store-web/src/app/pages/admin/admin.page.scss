@@ -50,6 +50,10 @@ header {
                     font-size: 14px;
                     color: #828282;
                     margin-right: 15px;
+
+                    @include for-mobile {
+                        display: none;
+                    }
                 }
 
                 app-avatar {

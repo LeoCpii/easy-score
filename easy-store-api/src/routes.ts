@@ -19,7 +19,7 @@ routes.get('/user/apps', UserController.apps);
 routes.get('/user/app', UserController.app);
 routes.post('/user/add-app', Auth.autorize, UserController.addApp);
 routes.put('/user/update-app', Auth.autorize, UserController.updateApp);
+routes.delete('/user/delete-app/:slug', Auth.autorize, UserController.deleteApp);
 routes.put('/user/update-favorite', Auth.autorize, UserController.addFavorite);
-
 
 export default routes;

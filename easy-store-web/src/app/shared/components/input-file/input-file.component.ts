@@ -23,6 +23,7 @@ export class InputFileComponent implements OnInit, ControlValueAccessor {
     public data: IFile;
     public digit = 0;
     public loading = false;
+    public messageError: string;
 
     public field = new FormControl('');
 
@@ -43,6 +44,10 @@ export class InputFileComponent implements OnInit, ControlValueAccessor {
         return this.controlDir.control;
     }
 
+    public get icon() {
+        return this.messageError ? 'close' : 'done';
+    }
+
     writeValue(value: string) {
         this.field.setValue(value);
     }
@@ -53,6 +58,15 @@ export class InputFileComponent implements OnInit, ControlValueAccessor {
 
     registerOnTouched(fn: () => void) {
         this.onTouched = fn;
+    }
+
+    public getClass(): string[] {
+        const cls = [];
+
+        if (this.messageError) { cls.push('icon--error'); }
+        if (!this.messageError) { cls.push('icon--success'); }
+
+        return cls;
     }
 
     private reset() {
@@ -66,7 +80,7 @@ export class InputFileComponent implements OnInit, ControlValueAccessor {
             if (num >= 100) {
                 setTimeout(() => {
                     this.loading = false;
-                    this.onChangeFn(this.data.base64);
+                    if (!this.messageError) { this.onChangeFn(this.data.base64); }
                 }, 500);
                 clearInterval(interval);
             }
@@ -74,10 +88,20 @@ export class InputFileComponent implements OnInit, ControlValueAccessor {
         }, 10);
     }
 
+    private setError() {
+        this.messageError = 'O tamanho do arquivo deve ser inferior a 1MB';
+    }
+
     public async onChange(event: Event): Promise<void> {
         this.reset();
         this.loading = true;
         const file = event.target['files'][0] as File;
+
+        if (file.size > 1024*1000) {
+            this.setError();
+        } else {
+            this.messageError = '';
+        }
 
         this.data = {
             name: file.name,

@@ -9,6 +9,11 @@
         @include grid(12);
     }
 
+    .button-exclude {
+        @include grid-column-span(12);
+        @include end;
+    }
+
     .form-container {
         @include grid-column-span(5);
         @include center;
@@ -81,6 +86,7 @@
                         margin: auto;
                         max-width: 75px;
                         height: 75px;
+                        overflow: hidden;
 
                         img {
                             width: 100%;
